@@ -17,10 +17,9 @@ jobs:
         envs: 'MYTOKEN'
         usesh: true
         prepare: |
-          pkg install -y curl
+          pkg install -y git
 
         run: |
-          pkg intall git
           cd /usr
           git clone https://github.com/opnsense/tools
           cd tools
