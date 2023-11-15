@@ -17,7 +17,7 @@ jobs:
         envs: 'MYTOKEN'
         usesh: true
         prepare: |
-          pkg install -y git
+          pkg install -y git pkg==1.19
 
         run: |
           cd /usr
