@@ -23,4 +23,4 @@ jobs:
           cd /usr
           git clone https://github.com/opnsense/tools
           cd tools
-          make nano
+          make update
