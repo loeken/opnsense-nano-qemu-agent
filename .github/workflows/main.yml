@@ -8,7 +8,7 @@ jobs:
     name: A job to run test in FreeBSD
 
     env:
-      CACHE_KEY: build-cache-${{ github.sha }}
+      CACHE_KEY: build-cache
 
     steps:
     - uses: actions/checkout@v3
