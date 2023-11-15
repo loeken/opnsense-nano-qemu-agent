@@ -1,0 +1,27 @@
+name: Test
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    name: A job to run test in FreeBSD
+    env:
+      MYTOKEN: "value2"
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test in FreeBSD
+      id: test
+      uses: vmactions/freebsd-vm@v1
+      with:
+        envs: 'MYTOKEN'
+        usesh: true
+        prepare: |
+          pkg install -y curl
+
+        run: |
+          pwd
+          ls -lah
+          whoami
+          env
+          freebsd-version
