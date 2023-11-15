@@ -14,11 +14,11 @@ jobs:
       id: test
       uses: vmactions/freebsd-vm@v1
       with:
+        release: 13.2
         envs: 'MYTOKEN'
         usesh: true
         prepare: |
-          pkg install -y git pkg==1.19
-
+          pkg install -y git 
         run: |
           cd /usr
           git clone https://github.com/opnsense/tools
