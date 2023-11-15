@@ -26,4 +26,32 @@ jobs:
           make update
           make vm ADDITIONS=os-qemu-guest-agent
           make print-IMAGESDIR
-          ls /usr/local/opnsense/build/23.7/amd64/images
+
+    # Step to archive files
+    - name: Archive files
+      run: |
+        tar -czvf opnsense-images.tar.gz -C /usr/local/opnsense/build/23.7/amd64/images .
+
+    # Step to create a release
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+    # Step to upload the archive to the release
+    - name: Upload Release Asset
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./opnsense-images.tar.gz
+        asset_name: opnsense-images.tar.gz
+        asset_content_type: application/gzip
