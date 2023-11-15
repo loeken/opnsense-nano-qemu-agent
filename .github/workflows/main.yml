@@ -26,3 +26,4 @@ jobs:
           make update
           make vm ADDITIONS=os-qemu-guest-agent
           make print-IMAGESDIR
+          ls /usr/local/opnsense/build/23.7/amd64/images
